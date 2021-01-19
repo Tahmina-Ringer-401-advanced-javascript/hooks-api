@@ -20,7 +20,7 @@ const [count, setCount] = useState();
   const _addItem = (item) => {
     item._id = Math.random();
     item.complete = false;
-    setList([...list, item]);
+    // setList([...list, item]);
   };
 
   const _toggleComplete = id => {
@@ -33,7 +33,8 @@ const [count, setCount] = useState();
 
   useEffect(() => {
    setCount(list.filter(item => !item.complete).length);
-  }, [list]);
+   document.title = `To Do List: (${count})`
+;  }, [list]);
 
   return (
     <>
