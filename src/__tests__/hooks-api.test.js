@@ -10,7 +10,7 @@ describe('Form', () => {
     userEvent.type(await screen.getByTestId('todoItem'), 'Eat Pizza');
     userEvent.type(await screen.getByTestId("asignAsignee"), 'Charles & Logan');
     userEvent.click(await screen.getByTestId('submit'));
-    let items = await waitFor(() => {
+    let items = waitFor(() => {
       screen.getAllByTestId("listitem");
     })
     console.log('items++++++++++++', items);
