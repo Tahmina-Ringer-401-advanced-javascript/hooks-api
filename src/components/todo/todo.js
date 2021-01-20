@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import { Container, Card } from 'react-bootstrap';
-
-import {GetList, EditList, CreateList, DeleteItem} from '../routes/routes.js';
 import './todo.scss';
 
 const ToDo = () => {
