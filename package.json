@@ -4,9 +4,11 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "express": "^4.17.1",
     "node-sass": "^4.14.1",
     "react": "16.13.1",
     "react-bootstrap": "^1.4.3",
