@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import { Container, Card } from 'react-bootstrap';
-
-import {GetList, EditList, CreateList, DeleteItem} from '../routes/routes.js';
 import './todo.scss';
 
 const ToDo = () => {
@@ -46,12 +44,6 @@ const [count, setCount] = useState();
     <>
     <Router>
       <Container>
-      <br />
-          <Navbar.Brand href="#home">Home</Navbar.Brand>
-          <Route path="/" exact component={GetList} />
-          <Route path="/edit/:id" component={EditList} />
-          <Route path="/create" component={CreateList} />
-          <Route path="/delete" component={DeleteItem} />
         <Card>
           <Card.Header bg="dark" > To Do List Manager ({count}) </Card.Header>
           <Card.Body>
