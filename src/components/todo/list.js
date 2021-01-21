@@ -1,8 +1,8 @@
 import React from 'react';
-import { ListGroup, Container } from 'react-bootstrap';
+import { ListGroup, Container, Button } from 'react-bootstrap';
 
 const TodoList = (props) => {
-  
+  console.log(props.list)
   return (
     <Container>
       <ListGroup>
@@ -14,6 +14,7 @@ const TodoList = (props) => {
             <span> {item.text} </span>
           </ListGroup.Item>
         ))}
+        <Button type="delete" data-testid="delete" onClick={() => props.handleDelete}>Delete Item</Button>
       </ListGroup>
     </Container>
   );
