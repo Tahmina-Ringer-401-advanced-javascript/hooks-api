@@ -18,7 +18,6 @@ const TodoList = (props) => {
       </ListGroup>
     </Container>
   );
-
 }
 
 export default TodoList;

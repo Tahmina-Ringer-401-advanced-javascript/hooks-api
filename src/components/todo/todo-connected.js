@@ -5,6 +5,7 @@ import './todo.scss';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import useAjaxCalls from './hooks/ajax'
+import { AppSettingsContext } from './context/app-settings'
 
 const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
