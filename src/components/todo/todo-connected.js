@@ -1,36 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Container, Card } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import './todo.scss';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import useAjaxCalls from './hooks/ajax'
-import { AppSettingsContext } from './context/app-settings'
+// import { AppSettingsContext } from './context/app-settings'
 
 const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
 const ToDo = () => {
  
   const {data, request} = useAjaxCalls();
+  console.log('data and request', data, request)
   const [count, setCount] = useState();
   const [list, setList] = useState([]);
 
-  const _getTodoItems = () => {
+  const _getTodoItems = useCallback(async() => {
     const options = {
       method: 'get',
       url: todoAPI,
     }
+    console.log('consoleloging data++++++++', data)
     request(options);
     setList(data);
-  };
+  }, [data, request]);
 
   const _addItem = (item) => {
     const options = {
       method: 'post',
       url: todoAPI,
-      body: JSON.stringify(item)
+      data: item
+      // body: JSON.stringify(item)
     }
-    request(options);
+    const list = request(options);
+    console.log('___________list______', list);
   };
 
   const _toggleComplete = id => {
@@ -45,8 +49,8 @@ const ToDo = () => {
       url: url,
       data: {complete: !item.complete}
       }
-    const list = request(options);
-    setList(list);
+    const data = request(options);
+    setList(data);
     };
   } 
 
@@ -61,11 +65,29 @@ const ToDo = () => {
       const options = {
         method: 'delete',
         url: url,
+        data: id
       }
       request(options);
       _getTodoItems();
     }
   };
+
+  // useEffect(() => {
+  //   setList(data);
+  //   // if(list.length === 0){
+  //     // _addItem();
+  //   // }
+  // }, [data])
+
+  useEffect(() => {
+    if(data){
+      console.log('data!!!!!!!!!!!!!!!!!!!!', data)
+      setList(data.results)
+    } else{
+      console.log("is this hitting?")
+      _getTodoItems();
+    }
+  }, [_getTodoItems, data]);
 
   useEffect(() => {
     if(list.length === 0){
@@ -73,8 +95,12 @@ const ToDo = () => {
     }
     setCount(list.filter(item => !item.complete).length);
     document.title = `To Do List: (${count})`;
-  }, [data, list, count]);
+  }, [data, list, count, _getTodoItems]);
  
+  console.log('lalalalalalalalal', data)
+  // useEffect(() => {
+  //   _toggleComplete();
+  // }, [data])
   return (
     <>
       <Container>

@@ -11,12 +11,14 @@ const useAjaxCalls = () => {
 
       try {
         const res = await axios(options);
+        console.log('res !!!!!!!!!!!!!', res);
         setData(res.data.results);
+        console.log('data data data', data)
      } catch (error) {
       }
     }
     ajax();
-  }, [options]);
+  }, [data, options]);
   return { data, request };
 }
 export default useAjaxCalls;

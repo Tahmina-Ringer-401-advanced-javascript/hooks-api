@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Card } from 'react-bootstrap';
 
 const TodoForm = (props) => {
@@ -8,10 +8,6 @@ const TodoForm = (props) => {
   const _changeInput = e => {
     setItem({...item, [e.target.name]: e.target.value}) 
   };
-
-  useEffect(() => {
-    console.log('item ____________________', item);
-  }, [item])
 
   const _handleSubmit = (e) => {
     e.preventDefault();
