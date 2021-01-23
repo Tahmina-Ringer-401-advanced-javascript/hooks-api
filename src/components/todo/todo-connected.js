@@ -21,27 +21,22 @@ const ToDo = () => {
       method: 'get',
       url: todoAPI,
     }
-    console.log('consoleloging data++++++++', data)
     request(options);
-    setList(data);
-  }, [data, request]);
+  }, [request]);
 
   const _addItem = (item) => {
     const options = {
       method: 'post',
       url: todoAPI,
       data: item
-      // body: JSON.stringify(item)
     }
-    const list = request(options);
-    console.log('___________list______', list);
+    request(options);
   };
 
   const _toggleComplete = id => {
     let item = list.filter(i => i._id === id)[0] || {};
   
     if (item._id) {
-      item.complete = !item.complete;
       let url = `${todoAPI}/${id}`;
 
     const options = {
@@ -49,64 +44,42 @@ const ToDo = () => {
       url: url,
       data: {complete: !item.complete}
       }
-    const data = request(options);
-    setList(data);
+    request(options);
     };
   } 
 
 
   const _deleteItem = id => {
-    let item = list.filter(i => i._id === id)[0] || {};
     
-    if (item._id) {
-      item.complete = !item.complete;
       let url = `${todoAPI}/${id}`;
       
       const options = {
         method: 'delete',
-        url: url,
-        data: id
+        url: url
       }
       request(options);
-      _getTodoItems();
-    }
   };
-
-  // useEffect(() => {
-  //   setList(data);
-  //   // if(list.length === 0){
-  //     // _addItem();
-  //   // }
-  // }, [data])
 
   useEffect(() => {
     if(data){
-      console.log('data!!!!!!!!!!!!!!!!!!!!', data)
-      setList(data.results)
-    } else{
-      console.log("is this hitting?")
+      setList(data)
+    } else {
       _getTodoItems();
     }
-  }, [_getTodoItems, data]);
+  }, [_getTodoItems, data, setList]);
 
   useEffect(() => {
-    if(list.length === 0){
       _getTodoItems();
-    }
-    setCount(list.filter(item => !item.complete).length);
-    document.title = `To Do List: (${count})`;
-  }, [data, list, count, _getTodoItems]);
+  }, []);
+  
  
-  console.log('lalalalalalalalal', data)
-  // useEffect(() => {
-  //   _toggleComplete();
-  // }, [data])
-  return (
-    <>
+    return (
+      <>
       <Container>
           <Navbar.Brand href="#home">Home</Navbar.Brand>
         <Card>
-          <Card.Header bg="dark" > To Do List Manager ({count}) </Card.Header>
+
+          <Card.Header bg="dark" > To Do List Manager {list.filter(item => !item.complete).length} </Card.Header>
           <Card.Body>
             <section className="todo">
               <div>

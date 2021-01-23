@@ -18,7 +18,7 @@ const useAjaxCalls = () => {
       }
     }
     ajax();
-  }, [data, options]);
+  }, [options]);
   return { data, request };
 }
 export default useAjaxCalls;

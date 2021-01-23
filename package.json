@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "src/index.js",
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
@@ -14,7 +12,6 @@
     "node-sass": "^4.14.1",
     "react": "16.13.1",
     "react-bootstrap": "^1.4.3",
-    "react-cookie": "^4.0.3",
     "react-cookies": "^0.1.1",
     "react-dom": "16.13.1",
     "react-jsonschema-form": "1.8.1",

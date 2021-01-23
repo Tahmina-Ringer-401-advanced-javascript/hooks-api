@@ -7,14 +7,16 @@ const TodoList = (props) => {
     <Container>
       <ListGroup>
         {props.list ? props.list.map(item => (
+            <>
           <ListGroup.Item onClick={() => props.handleComplete(item._id)}
             variant={item.complete ? 'success' : 'danger'}
             data-testid="listitem"
             className={`complete-${item.complete.toString()}`} key={item._id} >
             <span> {item.text} </span>
           </ListGroup.Item>
+            <Button type="delete" data-testid="delete" onClick={() => props.handleDelete(item._id)}>Delete Item</Button>
+            </>
         )) : [] }
-        <Button type="delete" data-testid="delete" onClick={() => props.handleDelete}>Delete Item</Button>
       </ListGroup>
     </Container>
   );
